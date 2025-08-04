@@ -1,0 +1,1034 @@
+Delivered-To: bt23cse221@iiitn.ac.in
+Received: by 2002:a54:2842:0:b0:2a1:9f36:e120 with SMTP id w2csp1419619ecq;
+        Mon, 4 Aug 2025 07:38:04 -0700 (PDT)
+X-Received: by 2002:a05:622a:286:b0:4b0:7bf0:5f7b with SMTP id d75a77b69052e-4b07bf077cdmr12795131cf.16.1754318283768;
+        Mon, 04 Aug 2025 07:38:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1754318283; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NnHrTNO/UoHA6m3tYV85Kqr3A9su2bYUaKMr8xlaBf+FYa6min3UC5TfcLRXIwqZPV
+         M/tvdZyGLVQzYnrSdHxOsyD+W3WYCUTTUAMLgri8sci1dfeWaDsP6iXaL9beh5OdVc83
+         92eIi6PHCzxylETzc0iJDWQyXM/qENrpks+8urSu2ebO65UHN1NDRuocaYKGm8Ak8ROL
+         hkzc03KdEwMjjJhiIBOGOJjurCBO9qmEALZYZXB0ZdcE/yf4qkA4Yw+nIdQhV2dwey6V
+         dsSzpmb123KxZVVUgnWCzZgjbKalMd2fRcFO0YJSNcixUmxYOA13/0Rbql/Eq9oXaTwa
+         sElw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=44BZH4uLTFRKRMqUNGaXnXGpHxSorCUvllWg1ksNWBk=;
+        fh=qxKyHA7cOkRtL3zGWXZZhVPayWr6hTzK6GnJ+TS/Jv0=;
+        b=C46+B0i00B8vYxudbbyHpRjVmrVJkGHPvFRaxGoMcI5aEmSIB3ws+K5yf2HTK4Ge5O
+         2yNeNvCirijQ081eLXDHrwbJ3IWvrfxIznbXynlfwo05HtxockBVoRwNaR79HYXToViN
+         yrpvryq8vhAveJtm8lVKdurmVdfXDccjrAwQtDujlXOg7TMidv1nLQc13hljDJwp+cvd
+         1HLxU532D9gsUxTgRpxJ3Y1OuOnGee9GQ7HQyL4xBFCnhLjMtgLDxcNhNrYwLPLtnMr2
+         VGk1ObsRtB8GKluemARmixrPx1eJWH6e5NhrcTbq/yWnE05buYB/3fNqDRfNVuHOWXpM
+         cazQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@iiitn-ac-in.20230601.gappssmtp.com header.s=20230601 header.b=OMBncBBV;
+       spf=pass (google.com: domain of bt23ece020@iiitn.ac.in designates 209.85.220.41 as permitted sender) smtp.mailfrom=bt23ece020@iiitn.ac.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=iiitn.ac.in;
+       dara=pass header.i=@iiitn.ac.in
+Return-Path: <bt23ece020@iiitn.ac.in>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d75a77b69052e-4b0658fe26fsor22303351cf.3.2025.08.04.07.38.03
+        for <bt23cse221@iiitn.ac.in>
+        (Google Transport Security);
+        Mon, 04 Aug 2025 07:38:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bt23ece020@iiitn.ac.in designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@iiitn-ac-in.20230601.gappssmtp.com header.s=20230601 header.b=OMBncBBV;
+       spf=pass (google.com: domain of bt23ece020@iiitn.ac.in designates 209.85.220.41 as permitted sender) smtp.mailfrom=bt23ece020@iiitn.ac.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=iiitn.ac.in;
+       dara=pass header.i=@iiitn.ac.in
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=iiitn-ac-in.20230601.gappssmtp.com; s=20230601; t=1754318283; x=1754923083; darn=iiitn.ac.in;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=44BZH4uLTFRKRMqUNGaXnXGpHxSorCUvllWg1ksNWBk=;
+        b=OMBncBBVdWettzNgWAYsjPJsZ8QGL46qmuKnwgw4xe39TO0mB3Nqj5HmfmwQk57pq8
+         Y434A99eNwRl/M6wt4T2ERd3QBiPF/9OkqT464VanIF3Q67dVT/QQ6XZqWAokRFVdr3I
+         JD4RV1yku5xmRNNsR5Cube0KYuWb67DpLswsowOGpSzzp0k3Ubmxti63qTiH7ge0a1Y9
+         MFcckWVQEwrUpsfhFv676j9+5dsodInG72y3L8jeDPZc4wmYpZp4wF8i4d+1eJKyz3e3
+         Hu+Spki3xwIGmcSg0T053nuiXDYah4jgiWXl4CCrlaaphST+upy9Gsrj5x9ALUf7dQmd
+         2rzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754318283; x=1754923083;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=44BZH4uLTFRKRMqUNGaXnXGpHxSorCUvllWg1ksNWBk=;
+        b=rUQvT44SyfrpAtBdS3KQd6676XFSwLFaoBRXZgemvKmKWxR+yqEXdFdbe7PLL1i6ZI
+         pLIVBn7H5bGApsSPwCGzIuhBfYDS3kgOZ2a68PBHYQxLO0lNkR+p482bbnbkfdEj/ZAz
+         804/NJvVL7F2uTxP7g3cl90l3wAL7KkxH5wd+nChdgThowEcAkyLyYIsgkN/XIX8ves/
+         P45+NZZ2EX8MUFFBzM4YY3ShhB5bzoXtC+2Y1mVVXDJaNfLOknxZP2J4SvdidSPAk4Mc
+         3bOtA2h6AiPrAAY3XbDtyAEoJZjJIAP2lfi3l5hrTiaEyOFD4KLKFTVz+34l1pN0P6pF
+         Y8SA==
+X-Gm-Message-State: AOJu0Yx0g6+NroAdfpJIzD6q9pkLJU1acSSllCIKh+sLJ91o3ynUxK0G
+	VAWkvnAUZYZEWfuPRkZSbZ822b9/+TsB6j0Oy9EJrYrCIGxxM8eXfnS+mykk7hHMnXD9N9Gm22F
+	aQjGcWntd9X0iBoxqwCUiIV8Qextqaz5LexDMz1du8L5/K45xviyYKn3FYrFi
+X-Gm-Gg: ASbGncvIdtclJ/tj00cM41OEICn057/amX2EGLl3GpYbgTggLHL8KbsL38d7JECOusV
+	ytpWhGcP9G8adqopsV/rE18etMYUYnX38X/df/opySSzXP/QCP6gyh/8ulz4QZ5RtrGJb9vGBXN
+	qu5ht+DyhjN/tN42gtX0zXm4GJNGjq7u1CvNw5m2cRTKs3tJm39K5aX1OpeLKxZUWfQ6h/7Ghzu
+	Mh6gzM4YqadE92UjfM=
+X-Google-Smtp-Source: AGHT+IHxdFu8sdX6Tc42lmYdDouYWKj+oWPWgBYDxtZ55iCpNFmtp5/yi7wAjAwYLmWe0iYk9lLGBZVEeSCOd5tqoaY=
+X-Received: by 2002:ac8:7c49:0:b0:4b0:7b02:2750 with SMTP id
+ d75a77b69052e-4b07b0228a0mr15592841cf.4.1754318282430; Mon, 04 Aug 2025
+ 07:38:02 -0700 (PDT)
+MIME-Version: 1.0
+From: Prakhar Beniwal <bt23ece020@iiitn.ac.in>
+Date: Mon, 4 Aug 2025 20:07:49 +0530
+X-Gm-Features: Ac12FXylRmZHBtcEZfhOX8RxIExU7UM0kAbNIXe54a6jHEf00l6CR4adJaywnIU
+Message-ID: <CAA7bs0oZW+nKoxJwjqQ1DkhTdXHHSbvXeqPcME8imHo1yUmKnQ@mail.gmail.com>
+Subject: 
+To: Shreya Thakur <bt23cse221@iiitn.ac.in>
+Content-Type: multipart/alternative; boundary="0000000000000c2db1063b8b0e1c"
+
+--0000000000000c2db1063b8b0e1c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Policy Overview
+
+
+   -
+
+   *Policy Name:* Arogya Sanjeevani Policy - National
+   -
+
+   *Company:* National Insurance Co. Ltd.
+   -
+
+   *UIN:* NICHLIP25041V022425
+   -
+
+   *Address:* Regd. & Head Office: Premises No. 18-0374, Plot no. CBD-81,
+   New Town, Kolkata - 700156
+
+Key Policy Details
+
+
+   -
+
+   *Sum Insured:* =E2=82=B950,000 to =E2=82=B910L, in multiples of =E2=82=
+=B950,000.
+   -
+
+      On an individual basis, the Sum Insured applies to each family member=
+.
+      -
+
+      On a floater basis, the Sum Insured applies to the entire family.
+      -
+
+   *Policy Period:* 1 year.
+   -
+
+   *Eligibility:*
+   -
+
+      The proposer must be between 18 and 65 years old.
+      -
+
+      The proposer can be older if they are obtaining the policy for their
+      family without covering themselves.
+      -
+
+      Children between 91 days and 25 years old can be covered, provided a
+      parent is also covered.
+      -
+
+   *Family:* The policy can cover the proposer, their legally wedded
+   spouse, parents, parents-in-law, and dependent children.
+
+Coverage Highlights
+
+
+   -
+
+   *Hospitalisation Expenses:* The company will cover medical expenses for
+   hospitalization for a minimum of 24 consecutive hours. This includes:
+   -
+
+      Room Rent, Boarding, and Nursing Expenses up to *2% of the sum
+      insured* (maximum of =E2=82=B95,000 per day).
+      -
+
+      ICU/ICCU expenses up to *5% of the sum insured* (maximum of =E2=82=B9=
+10,000
+      per day).
+      -
+
+      Surgeon, Anesthetist, Medical Practitioner, and Specialist fees.
+      -
+
+      Other expenses like blood, oxygen, operation theatre charges, and
+      diagnostics.
+      -
+
+      Certain other expenses like cataract treatment, dental treatment,
+      plastic surgery (if necessitated by injury or disease), day care
+      treatments, and road ambulance charges (up to =E2=82=B92,000 per hosp=
+italization).
+      -
+
+   *AYUSH Treatment:* Inpatient care treatment under Ayurveda, Yoga and
+   Naturopathy, Unani, Sidha, and Homeopathy systems is covered up to the s=
+um
+   insured.
+   -
+
+   *Pre-hospitalisation:* Medical expenses incurred for a period of *30
+   days* prior to hospitalization are covered.
+   -
+
+   *Post-hospitalisation:* Medical expenses incurred for a period of *60
+   days* after discharge from the hospital are covered.
+   -
+
+   *Modern Treatments:* Certain modern treatments are covered, subject to a
+   limit of *50% of the Sum Insured*.
+   -
+
+   *Cumulative Bonus (CB):* A 5% increase in the Sum Insured for each
+   claim-free year, up to a maximum of 50% of the Sum Insured. This benefit
+   reduces if a claim is made.
+   -
+
+   *Co-payment:*
+   -
+
+      A *5% co-payment* on all claims for insured persons aged 75 or less
+      at policy inception.
+      -
+
+      A *15% co-payment* on all claims for insured persons aged over 75 at
+      policy inception.
+
+Waiting Periods
+
+
+   -
+
+   *Pre-Existing Diseases (PEDs):* Expenses for PEDs are excluded until *36
+   months* of continuous coverage.
+   -
+
+   *Initial Waiting Period:* A *30-day* waiting period for any illness
+   treatment from the first policy commencement date, except for accidents.
+   -
+
+   *Specific Diseases/Procedures:* A *24-month* waiting period for a list
+   of specified diseases and procedures, such as benign ENT disorders, hern=
+ia,
+   and cataracts. A *36-month* waiting period applies to joint replacement
+   and age-related osteoarthritis unless caused by an accident.
+
+Exclusions
+
+The policy does not cover expenses for:
+
+   -
+
+   Investigation and evaluation purposes only.
+   -
+
+   Rest, rehabilitation, and respite care.
+   -
+
+   Obesity/weight control surgery (unless specific conditions are met).
+   -
+
+   Change-of-gender treatments.
+   -
+
+   Cosmetic or plastic surgery (unless for reconstruction after an
+   accident, burn, or cancer).
+   -
+
+   Treatment for injuries from hazardous sports or criminal acts.
+   -
+
+   Drug/alcohol abuse treatment.
+   -
+
+   Domiciliary hospitalization and OPD treatment.
+   -
+
+   Treatment outside of India.
+
+Claims Procedure
+
+
+   -
+
+   *Cashless Claims:* A pre-authorization request must be submitted to the
+   company or TPA.
+   -
+
+   *Reimbursement Claims:*
+   -
+
+      Hospitalization expenses must be submitted within *30 days* of
+      discharge.
+      -
+
+      Post-hospitalization expenses must be submitted within *15 days* of
+      completing the treatment.
+      -
+
+   *Notification of Claim:*
+   -
+
+      Within 24 hours for emergency hospitalization.
+      -
+
+      At least 48 hours prior to admission for planned hospitalization.
+
+--0000000000000c2db1063b8b0e1c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><h2 style=3D"color:rgb(27,28,29);background:none 0% 0%/aut=
+o repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27=
+,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;mar=
+gin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes=
+:auto;speak:normal;zoom:1;font-family:&quot;Google Sans&quot;,sans-serif;li=
+ne-height:1.15">Policy Overview</h2><p style=3D"color:rgb(27,28,29);font-fa=
+mily:&quot;Google Sans Text&quot;,sans-serif;background:none 0% 0%/auto rep=
+eat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,2=
+9);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:0=
+px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto=
+;speak:normal;zoom:1;line-height:1.15"></p><ul style=3D"color:rgb(27,28,29)=
+;font-family:&quot;Google Sans Text&quot;,sans-serif;background:none 0% 0%/=
+auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb=
+(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;=
+margin:0px 0px 16px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0p=
+x 0px 27px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><li style=3D"m=
+argin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box bord=
+er-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;=
+direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) non=
+e 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1=
+.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box borde=
+r-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;d=
+irection:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline=
+:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zo=
+om:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto repeat scroll=
+ padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:n=
+one;columns:auto;direction:ltr;display:inline;float:none;isolation:auto;mar=
+gin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;sp=
+eak:normal;zoom:1;line-height:1.15">Policy Name:</b>=C2=A0Arogya Sanjeevani=
+ Policy - National</p></li><li style=3D"margin:0px 0px 8px;background:none =
+0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px no=
+ne rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation=
+:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quot=
+es:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0=
+% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px non=
+e rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:=
+auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0p=
+x 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D=
+"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0=
+,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;dis=
+play:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,2=
+8,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15=
+">Company:</b>=C2=A0National Insurance Co. Ltd.</p></li><li style=3D"margin=
+:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box border-bo=
+x rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direc=
+tion:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px=
+;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+<p style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box=
+ rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direct=
+ion:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(=
+27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;=
+line-height:1.15"><b style=3D"background:none 0% 0%/auto repeat scroll padd=
+ing-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;c=
+olumns:auto;direction:ltr;display:inline;float:none;isolation:auto;margin:0=
+px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:n=
+ormal;zoom:1;line-height:1.15">UIN:</b>=C2=A0NICHLIP25041V022425</p></li><l=
+i style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padd=
+ing-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;c=
+olumns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;l=
+ine-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll paddi=
+ng-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;co=
+lumns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opaci=
+ty:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;spe=
+ak:normal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto r=
+epeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28=
+,29);clear:none;columns:auto;direction:ltr;display:inline;float:none;isolat=
+ion:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;qu=
+otes:auto;speak:normal;zoom:1;line-height:1.15">Address:</b>=C2=A0Regd. &am=
+p; Head Office: Premises No. 18-0374, Plot no. CBD-81, New Town, Kolkata - =
+700156</p></li></ul><p style=3D"color:rgb(27,28,29);font-family:&quot;Googl=
+e Sans Text&quot;,sans-serif;background:none 0% 0%/auto repeat scroll paddi=
+ng-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;co=
+lumns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 16px;opac=
+ity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;z=
+oom:1;line-height:1.15"></p><h2 style=3D"color:rgb(27,28,29);background:non=
+e 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px =
+none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolati=
+on:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding=
+:0px;quotes:auto;speak:normal;zoom:1;font-family:&quot;Google Sans&quot;,sa=
+ns-serif;line-height:1.15">Key Policy Details</h2><p style=3D"color:rgb(27,=
+28,29);font-family:&quot;Google Sans Text&quot;,sans-serif;background:none =
+0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px no=
+ne rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation=
+:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0=
+px;quotes:auto;speak:normal;zoom:1;line-height:1.15"></p><ul style=3D"color=
+:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;,sans-serif;backgrou=
+nd:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);borde=
+r:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;i=
+solation:auto;margin:0px 0px 16px;opacity:1;outline:rgb(27,28,29) none 0px;=
+padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+<li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll pa=
+dding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none=
+;columns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb=
+(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1=
+;line-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll pad=
+ding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;=
+columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opa=
+city:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;s=
+peak:normal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto=
+ repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,=
+28,29);clear:none;columns:auto;direction:ltr;display:inline;float:none;isol=
+ation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;=
+quotes:auto;speak:normal;zoom:1;line-height:1.15">Sum Insured:</b>=C2=A0=E2=
+=82=B950,000 to =E2=82=B910L, in multiples of =E2=82=B950,000.</p><ul style=
+=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:1;line-he=
+ight:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repea=
+t scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29)=
+;clear:none;columns:auto;direction:ltr;float:none;isolation:auto;opacity:1;=
+outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:no=
+rmal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto repeat=
+ scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);=
+clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px =
+0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;qu=
+otes:auto;speak:normal;zoom:1;line-height:1.15">On an individual basis, the=
+ Sum Insured applies to each family member.</p></li><li style=3D"margin:0px=
+ 0px 8px;background:none 0% 0%/auto repeat scroll padding-box border-box rg=
+ba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction=
+:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;pad=
+ding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p s=
+tyle=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgb=
+a(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:=
+ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,2=
+8,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line=
+-height:1.15">On a floater basis, the Sum Insured applies to the entire fam=
+ily.</p></li></ul></li><li style=3D"margin:0px 0px 8px;background:none 0% 0=
+%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none r=
+gb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:aut=
+o;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:a=
+uto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%=
+/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rg=
+b(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto=
+;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0p=
+x 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D"bac=
+kground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);=
+border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;display=
+:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Po=
+licy Period:</b>=C2=A01 year.</p></li><li style=3D"margin:0px 0px 8px;backg=
+round:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bo=
+rder:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:non=
+e;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0=
+px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"backgr=
+ound:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bor=
+der:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none=
+;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px=
+;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+<b style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box=
+ rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direct=
+ion:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;outli=
+ne:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-=
+height:1.15">Eligibility:</b></p><ul style=3D"background:none 0% 0%/auto re=
+peat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,=
+29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:=
+0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 27=
+px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><li style=3D"margin:0p=
+x 0px 8px;background:none 0% 0%/auto repeat scroll padding-box border-box r=
+gba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;directio=
+n:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;pa=
+dding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p =
+style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rg=
+ba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction=
+:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,=
+28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;lin=
+e-height:1.15">The proposer must be between 18 and 65 years old.</p></li><l=
+i style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padd=
+ing-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;c=
+olumns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;l=
+ine-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll paddi=
+ng-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;co=
+lumns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opaci=
+ty:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;spe=
+ak:normal;zoom:1;line-height:1.15">The proposer can be older if they are ob=
+taining the policy for their family without covering themselves.</p></li><l=
+i style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padd=
+ing-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;c=
+olumns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;l=
+ine-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll paddi=
+ng-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;co=
+lumns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opaci=
+ty:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;spe=
+ak:normal;zoom:1;line-height:1.15">Children between 91 days and 25 years ol=
+d can be covered, provided a parent is also covered.</p></li></ul></li><li =
+style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll paddin=
+g-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;col=
+umns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,=
+28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;lin=
+e-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding=
+-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;colu=
+mns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity=
+:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak=
+:normal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto rep=
+eat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,2=
+9);clear:none;columns:auto;direction:ltr;display:inline;float:none;isolatio=
+n:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quot=
+es:auto;speak:normal;zoom:1;line-height:1.15">Family:</b>=C2=A0The policy c=
+an cover the proposer, their legally wedded spouse, parents, parents-in-law=
+, and dependent children.</p></li></ul><p style=3D"color:rgb(27,28,29);font=
+-family:&quot;Google Sans Text&quot;,sans-serif;background:none 0% 0%/auto =
+repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,2=
+8,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margi=
+n:0px 0px 16px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:=
+auto;speak:normal;zoom:1;line-height:1.15"></p><h2 style=3D"color:rgb(27,28=
+,29);background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0=
+,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr=
+;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,2=
+9) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;font-family:&quot;G=
+oogle Sans&quot;,sans-serif;line-height:1.15">Coverage Highlights</h2><p st=
+yle=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;,sans-se=
+rif;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15"></=
+p><ul style=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;=
+,sans-serif;background:none 0% 0%/auto repeat scroll padding-box border-box=
+ rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direct=
+ion:ltr;float:none;isolation:auto;margin:0px 0px 16px;opacity:1;outline:rgb=
+(27,28,29) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:=
+1;line-height:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%/a=
+uto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(=
+27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;o=
+pacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto=
+;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/au=
+to repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(2=
+7,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;ma=
+rgin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0=
+px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D"backgr=
+ound:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bor=
+der:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;display:in=
+line;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) n=
+one 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Hospi=
+talisation Expenses:</b>=C2=A0The company will cover medical expenses for h=
+ospitalization for a minimum of 24 consecutive hours. This includes:</p><ul=
+ style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box r=
+gba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;directio=
+n:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27=
+,28,29) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:1;l=
+ine-height:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto=
+ repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,=
+28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;opac=
+ity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;sp=
+eak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto =
+repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,2=
+8,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margi=
+n:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px =
+4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Room Rent, Boarding, =
+and Nursing Expenses up to=C2=A0<b style=3D"background:none 0% 0%/auto repe=
+at scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29=
+);clear:none;columns:auto;direction:ltr;display:inline;float:none;isolation=
+:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quote=
+s:auto;speak:normal;zoom:1;line-height:1.15">2% of the sum insured</b>=C2=
+=A0(maximum of =E2=82=B95,000 per day).</p></li><li style=3D"margin:0px 0px=
+ 8px;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0=
+,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr=
+;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding=
+:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=
+=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15">ICU/ICCU expenses up to=C2=A0<b style=3D"background:none 0% 0%/au=
+to repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(2=
+7,28,29);clear:none;columns:auto;direction:ltr;display:inline;float:none;is=
+olation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0p=
+x;quotes:auto;speak:normal;zoom:1;line-height:1.15">5% of the sum insured</=
+b>=C2=A0(maximum of =E2=82=B910,000 per day).</p></li><li style=3D"margin:0=
+px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box border-box =
+rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;directi=
+on:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;p=
+adding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p=
+ style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box r=
+gba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;directio=
+n:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27=
+,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;li=
+ne-height:1.15">Surgeon, Anesthetist, Medical Practitioner, and Specialist =
+fees.</p></li><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto re=
+peat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,=
+29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;opacity=
+:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak=
+:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto rep=
+eat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,2=
+9);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:0=
+px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px=
+;quotes:auto;speak:normal;zoom:1;line-height:1.15">Other expenses like bloo=
+d, oxygen, operation theatre charges, and diagnostics.</p></li><li style=3D=
+"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box bo=
+rder-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:aut=
+o;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) n=
+one 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height=
+:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box bor=
+der-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto=
+;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outli=
+ne:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;=
+zoom:1;line-height:1.15">Certain other expenses like cataract treatment, de=
+ntal treatment, plastic surgery (if necessitated by injury or disease), day=
+ care treatments, and road ambulance charges (up to =E2=82=B92,000 per hosp=
+italization).</p></li></ul></li><li style=3D"margin:0px 0px 8px;background:=
+none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0=
+px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isol=
+ation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px=
+;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:n=
+one 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0p=
+x none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isola=
+tion:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;paddi=
+ng:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b sty=
+le=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(=
+0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:lt=
+r;display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb=
+(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height=
+:1.15">AYUSH Treatment:</b>=C2=A0Inpatient care treatment under Ayurveda, Y=
+oga and Naturopathy, Unani, Sidha, and Homeopathy systems is covered up to =
+the sum insured.</p></li><li style=3D"margin:0px 0px 8px;background:none 0%=
+ 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none=
+ rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:a=
+uto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes=
+:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% =
+0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none =
+rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:au=
+to;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px =
+0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D"b=
+ackground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0=
+);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;displ=
+ay:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,=
+29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+Pre-hospitalisation:</b>=C2=A0Medical expenses incurred for a period of=C2=
+=A0<b style=3D"background:none 0% 0%/auto repeat scroll padding-box border-=
+box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;dir=
+ection:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;ou=
+tline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;li=
+ne-height:1.15">30 days</b>=C2=A0prior to hospitalization are covered.</p><=
+/li><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scrol=
+l padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:=
+none;columns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline=
+:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zo=
+om:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll=
+ padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:n=
+one;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px=
+;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:au=
+to;speak:normal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/=
+auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb=
+(27,28,29);clear:none;columns:auto;direction:ltr;display:inline;float:none;=
+isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:=
+0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Post-hospitalisation:=
+</b>=C2=A0Medical expenses incurred for a period of=C2=A0<b style=3D"backgr=
+ound:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bor=
+der:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;display:in=
+line;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) n=
+one 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">60 da=
+ys</b>=C2=A0after discharge from the hospital are covered.</p></li><li styl=
+e=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-bo=
+x border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns=
+:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,2=
+9) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-he=
+ight:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box=
+ border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:=
+auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;o=
+utline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:nor=
+mal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto repeat =
+scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);c=
+lear:none;columns:auto;direction:ltr;display:inline;float:none;isolation:au=
+to;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:a=
+uto;speak:normal;zoom:1;line-height:1.15">Modern Treatments:</b>=C2=A0Certa=
+in modern treatments are covered, subject to a limit of=C2=A0<b style=3D"ba=
+ckground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0)=
+;border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;displa=
+y:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,2=
+9) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">5=
+0% of the Sum Insured</b>.</p></li><li style=3D"margin:0px 0px 8px;backgrou=
+nd:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);borde=
+r:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;i=
+solation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px =
+4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"backgroun=
+d:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border=
+:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;is=
+olation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;pa=
+dding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b =
+style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rg=
+ba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction=
+:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:=
+rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15">Cumulative Bonus (CB):</b>=C2=A0A 5% increase in the Sum Insured =
+for each claim-free year, up to a maximum of 50% of the Sum Insured. This b=
+enefit reduces if a claim is made.</p></li><li style=3D"margin:0px 0px 8px;=
+background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,=
+0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;floa=
+t:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px =
+0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"b=
+ackground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0=
+);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float=
+:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) non=
+e 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1=
+.15"><b style=3D"background:none 0% 0%/auto repeat scroll padding-box borde=
+r-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;d=
+irection:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;=
+outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;=
+line-height:1.15">Co-payment:</b></p><ul style=3D"background:none 0% 0%/aut=
+o repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27=
+,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;mar=
+gin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0p=
+x 27px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><li style=3D"margi=
+n:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box border-b=
+ox rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;dire=
+ction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0p=
+x;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"=
+><p style=3D"background:none 0% 0%/auto repeat scroll padding-box border-bo=
+x rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direc=
+tion:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb=
+(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1=
+;line-height:1.15">A=C2=A0<b style=3D"background:none 0% 0%/auto repeat scr=
+oll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clea=
+r:none;columns:auto;direction:ltr;display:inline;float:none;isolation:auto;=
+margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto=
+;speak:normal;zoom:1;line-height:1.15">5% co-payment</b>=C2=A0on all claims=
+ for insured persons aged 75 or less at policy inception.</p></li><li style=
+=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box=
+ border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:=
+auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box =
+border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:a=
+uto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;ou=
+tline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:norm=
+al;zoom:1;line-height:1.15">A=C2=A0<b style=3D"background:none 0% 0%/auto r=
+epeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28=
+,29);clear:none;columns:auto;direction:ltr;display:inline;float:none;isolat=
+ion:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;qu=
+otes:auto;speak:normal;zoom:1;line-height:1.15">15% co-payment</b>=C2=A0on =
+all claims for insured persons aged over 75 at policy inception.</p></li></=
+ul></li></ul><p style=3D"color:rgb(27,28,29);font-family:&quot;Google Sans =
+Text&quot;,sans-serif;background:none 0% 0%/auto repeat scroll padding-box =
+border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:a=
+uto;direction:ltr;float:none;isolation:auto;margin:0px 0px 16px;opacity:1;o=
+utline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;l=
+ine-height:1.15"></p><h2 style=3D"color:rgb(27,28,29);background:none 0% 0%=
+/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rg=
+b(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto=
+;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;qu=
+otes:auto;speak:normal;zoom:1;font-family:&quot;Google Sans&quot;,sans-seri=
+f;line-height:1.15">Waiting Periods</h2><p style=3D"color:rgb(27,28,29);fon=
+t-family:&quot;Google Sans Text&quot;,sans-serif;background:none 0% 0%/auto=
+ repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,=
+28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;marg=
+in:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:=
+auto;speak:normal;zoom:1;line-height:1.15"></p><ul style=3D"color:rgb(27,28=
+,29);font-family:&quot;Google Sans Text&quot;,sans-serif;background:none 0%=
+ 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none=
+ rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:a=
+uto;margin:0px 0px 16px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0p=
+x 0px 0px 27px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><li style=
+=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box=
+ border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:=
+auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box =
+border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:a=
+uto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;ou=
+tline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:norm=
+al;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto repeat s=
+croll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);cl=
+ear:none;columns:auto;direction:ltr;display:inline;float:none;isolation:aut=
+o;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:au=
+to;speak:normal;zoom:1;line-height:1.15">Pre-Existing Diseases (PEDs):</b>=
+=C2=A0Expenses for PEDs are excluded until=C2=A0<b style=3D"background:none=
+ 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px n=
+one rgb(27,28,29);clear:none;columns:auto;direction:ltr;display:inline;floa=
+t:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;p=
+adding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">36 months</b>=
+=C2=A0of continuous coverage.</p></li><li style=3D"margin:0px 0px 8px;backg=
+round:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bo=
+rder:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:non=
+e;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0=
+px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"backgr=
+ound:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bor=
+der:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none=
+;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px=
+;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+<b style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box=
+ rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direct=
+ion:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;outli=
+ne:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-=
+height:1.15">Initial Waiting Period:</b>=C2=A0A=C2=A0<b style=3D"background=
+:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:=
+0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;display:inline=
+;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29) none =
+0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">30-day</b=
+>=C2=A0waiting period for any illness treatment from the first policy comme=
+ncement date, except for accidents.</p></li><li style=3D"margin:0px 0px 8px=
+;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0=
+,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;flo=
+at:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px=
+ 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"=
+background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,=
+0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;floa=
+t:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) no=
+ne 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:=
+1.15"><b style=3D"background:none 0% 0%/auto repeat scroll padding-box bord=
+er-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;=
+direction:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1=
+;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1=
+;line-height:1.15">Specific Diseases/Procedures:</b>=C2=A0A=C2=A0<b style=
+=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1=
+.15">24-month</b>=C2=A0waiting period for a list of specified diseases and =
+procedures, such as benign ENT disorders, hernia, and cataracts. A=C2=A0<b =
+style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rg=
+ba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction=
+:ltr;display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:=
+rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15">36-month</b>=C2=A0waiting period applies to joint replacement and=
+ age-related osteoarthritis unless caused by an accident.</p></li></ul><p s=
+tyle=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;,sans-s=
+erif;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0=
+,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr=
+;float:none;isolation:auto;margin:0px 0px 16px;opacity:1;outline:rgb(27,28,=
+29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+</p><h2 style=3D"color:rgb(27,28,29);background:none 0% 0%/auto repeat scro=
+ll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear=
+:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8=
+px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:n=
+ormal;zoom:1;font-family:&quot;Google Sans&quot;,sans-serif;line-height:1.1=
+5">Exclusions</h2><p style=3D"color:rgb(27,28,29);font-family:&quot;Google =
+Sans Text&quot;,sans-serif;background:none 0% 0%/auto repeat scroll padding=
+-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;colu=
+mns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 16px;opacit=
+y:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoo=
+m:1;line-height:1.15"></p><p style=3D"color:rgb(27,28,29);font-family:&quot=
+;Google Sans Text&quot;,sans-serif;background:none 0% 0%/auto repeat scroll=
+ padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:n=
+one;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px=
+;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes:auto;speak:nor=
+mal;zoom:1;line-height:1.15">The policy does not cover expenses for:</p><ul=
+ style=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;,sans=
+-serif;background:none 0% 0%/auto repeat scroll padding-box border-box rgba=
+(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:l=
+tr;float:none;isolation:auto;margin:0px 0px 16px;opacity:1;outline:rgb(27,2=
+8,29) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:1;lin=
+e-height:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto r=
+epeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28=
+,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;opacit=
+y:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;spea=
+k:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto re=
+peat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,=
+29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:=
+0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4p=
+x;quotes:auto;speak:normal;zoom:1;line-height:1.15">Investigation and evalu=
+ation purposes only.</p></li><li style=3D"margin:0px 0px 8px;background:non=
+e 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px =
+none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolati=
+on:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;qu=
+otes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none=
+ 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px n=
+one rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolatio=
+n:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:=
+0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Rest, reh=
+abilitation, and respite care.</p></li><li style=3D"margin:0px 0px 8px;back=
+ground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);b=
+order:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:no=
+ne;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px =
+0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"backg=
+round:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bo=
+rder:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:non=
+e;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0p=
+x;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"=
+>Obesity/weight control surgery (unless specific conditions are met).</p></=
+li><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll=
+ padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:n=
+one;columns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:=
+rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoo=
+m:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll =
+padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:no=
+ne;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;=
+opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:aut=
+o;speak:normal;zoom:1;line-height:1.15">Change-of-gender treatments.</p></l=
+i><li style=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll =
+padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:no=
+ne;columns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:r=
+gb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom=
+:1;line-height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll p=
+adding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:non=
+e;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;o=
+pacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto=
+;speak:normal;zoom:1;line-height:1.15">Cosmetic or plastic surgery (unless =
+for reconstruction after an accident, burn, or cancer).</p></li><li style=
+=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-box=
+ border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:=
+auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29=
+) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-hei=
+ght:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-box =
+border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:a=
+uto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;ou=
+tline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:norm=
+al;zoom:1;line-height:1.15">Treatment for injuries from hazardous sports or=
+ criminal acts.</p></li><li style=3D"margin:0px 0px 8px;background:none 0% =
+0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none =
+rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:au=
+to;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:=
+auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0=
+%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none r=
+gb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:aut=
+o;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0=
+px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Drug/alcohol a=
+buse treatment.</p></li><li style=3D"margin:0px 0px 8px;background:none 0% =
+0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none =
+rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:au=
+to;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:=
+auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0=
+%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none r=
+gb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:aut=
+o;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0=
+px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Domiciliary ho=
+spitalization and OPD treatment.</p></li><li style=3D"margin:0px 0px 8px;ba=
+ckground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0)=
+;border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:=
+none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0p=
+x 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"bac=
+kground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);=
+border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:n=
+one;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none =
+0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.1=
+5">Treatment outside of India.</p></li></ul><p style=3D"color:rgb(27,28,29)=
+;font-family:&quot;Google Sans Text&quot;,sans-serif;background:none 0% 0%/=
+auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb=
+(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;=
+margin:0px 0px 16px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;qu=
+otes:auto;speak:normal;zoom:1;line-height:1.15"></p><h2 style=3D"color:rgb(=
+27,28,29);background:none 0% 0%/auto repeat scroll padding-box border-box r=
+gba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;directio=
+n:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27=
+,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;font-family:&q=
+uot;Google Sans&quot;,sans-serif;line-height:1.15">Claims Procedure</h2><p =
+style=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quot;,sans-=
+serif;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(=
+0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:lt=
+r;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,=
+29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+</p><ul style=3D"color:rgb(27,28,29);font-family:&quot;Google Sans Text&quo=
+t;,sans-serif;background:none 0% 0%/auto repeat scroll padding-box border-b=
+ox rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;dire=
+ction:ltr;float:none;isolation:auto;margin:0px 0px 16px;opacity:1;outline:r=
+gb(27,28,29) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoo=
+m:1;line-height:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%=
+/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rg=
+b(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto=
+;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:au=
+to;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/=
+auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb=
+(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;=
+margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px=
+ 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D"back=
+ground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);b=
+order:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;display:=
+inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,29)=
+ none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Cas=
+hless Claims:</b>=C2=A0A pre-authorization request must be submitted to the=
+ company or TPA.</p></li><li style=3D"margin:0px 0px 8px;background:none 0%=
+ 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none=
+ rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:a=
+uto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes=
+:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% =
+0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none =
+rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:au=
+to;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px =
+0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><b style=3D"b=
+ackground:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0=
+);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;displ=
+ay:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(27,28,=
+29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1.15">=
+Reimbursement Claims:</b></p><ul style=3D"background:none 0% 0%/auto repeat=
+ scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);=
+clear:none;columns:auto;direction:ltr;float:none;isolation:auto;margin:0px =
+0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 27px;q=
+uotes:auto;speak:normal;zoom:1;line-height:1.15"><li style=3D"margin:0px 0p=
+x 8px;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(=
+0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:lt=
+r;float:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;paddin=
+g:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p styl=
+e=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0=
+,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr=
+;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,2=
+9) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-he=
+ight:1.15">Hospitalization expenses must be submitted within=C2=A0<b style=
+=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1=
+.15">30 days</b>=C2=A0of discharge.</p></li><li style=3D"margin:0px 0px 8px=
+;background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0=
+,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;flo=
+at:none;isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px=
+ 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"=
+background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,=
+0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;floa=
+t:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) no=
+ne 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:=
+1.15">Post-hospitalization expenses must be submitted within=C2=A0<b style=
+=3D"background:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,=
+0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;=
+display:inline;float:none;isolation:auto;margin:0px;opacity:1;outline:rgb(2=
+7,28,29) none 0px;padding:0px;quotes:auto;speak:normal;zoom:1;line-height:1=
+.15">15 days</b>=C2=A0of completing the treatment.</p></li></ul></li><li st=
+yle=3D"margin:0px 0px 8px;background:none 0% 0%/auto repeat scroll padding-=
+box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;colum=
+ns:auto;direction:ltr;float:none;isolation:auto;opacity:1;outline:rgb(27,28=
+,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-=
+height:1.15"><p style=3D"background:none 0% 0%/auto repeat scroll padding-b=
+ox border-box rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;column=
+s:auto;direction:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1=
+;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;speak:n=
+ormal;zoom:1;line-height:1.15"><b style=3D"background:none 0% 0%/auto repea=
+t scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27,28,29)=
+;clear:none;columns:auto;direction:ltr;display:inline;float:none;isolation:=
+auto;margin:0px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px;quotes=
+:auto;speak:normal;zoom:1;line-height:1.15">Notification of Claim:</b></p><=
+ul style=3D"background:none 0% 0%/auto repeat scroll padding-box border-box=
+ rgba(0,0,0,0);border:0px none rgb(27,28,29);clear:none;columns:auto;direct=
+ion:ltr;float:none;isolation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(=
+27,28,29) none 0px;padding:0px 0px 0px 27px;quotes:auto;speak:normal;zoom:1=
+;line-height:1.15"><li style=3D"margin:0px 0px 8px;background:none 0% 0%/au=
+to repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(2=
+7,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;op=
+acity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px 4px;quotes:auto;=
+speak:normal;zoom:1;line-height:1.15"><p style=3D"background:none 0% 0%/aut=
+o repeat scroll padding-box border-box rgba(0,0,0,0);border:0px none rgb(27=
+,28,29);clear:none;columns:auto;direction:ltr;float:none;isolation:auto;mar=
+gin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0p=
+x 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">Within 24 hours for=
+ emergency hospitalization.</p></li><li style=3D"margin:0px 0px 8px;backgro=
+und:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);bord=
+er:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;=
+isolation:auto;opacity:1;outline:rgb(27,28,29) none 0px;padding:0px 0px 0px=
+ 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15"><p style=3D"backgrou=
+nd:none 0% 0%/auto repeat scroll padding-box border-box rgba(0,0,0,0);borde=
+r:0px none rgb(27,28,29);clear:none;columns:auto;direction:ltr;float:none;i=
+solation:auto;margin:0px 0px 8px;opacity:1;outline:rgb(27,28,29) none 0px;p=
+adding:0px 0px 0px 4px;quotes:auto;speak:normal;zoom:1;line-height:1.15">At=
+ least 48 hours prior to admission for planned hospitalization.</p></li></u=
+l></li></ul></div>
+
+--0000000000000c2db1063b8b0e1c--
